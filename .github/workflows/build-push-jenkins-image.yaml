@@ -14,10 +14,6 @@ on:
         required: true
         type: string
         default: 'latest'
-      dockerfile_path:
-        default: '.'
-        description: 'Dockerfile path for build'
-        required: true
 
 jobs:
   build-and-push-jenkins-image-to-dockerhub-registry:
@@ -36,6 +32,5 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
-        file: ${{ inputs.dockerfile_path }}
         push: true
         tags: ${{ inputs.image_name }}:${{ inputs.tag }}
