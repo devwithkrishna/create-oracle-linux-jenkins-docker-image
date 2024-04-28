@@ -1,6 +1,6 @@
 FROM oraclelinux:9
 
-ARG JAVA_VERSION=11.0.22.7.1
+ARG JAVA_VERSION=11.0.22+7
 
 # Update and upgrade packages
 dnf makecache && dnf upgrade-y
@@ -14,7 +14,6 @@ RUN dnf install --disableplugin=subscription-manager --setopt=install_weak_deps=
     wget \
     && dnf clean --disableplugin=subscription-manager all 
 
-# Set JAVA_HOME env in path variable
-RUN export JAVA_HOME=$(java -XshowSettings:properties -version 2>&1 > /dev/null | grep 'java.home' | awk '{print $3}' | sed 's/.$//')
-ENV PATH "${JAVA_HOME}/bin:${PATH}"
-
+# Install Open jdk 11 
+COPY download_install_open_jdk.sh .
+RUN chmod +x download_install_open_jdk.sh && ./download_install_open_jdk.sh ${JAVA_VERSION}

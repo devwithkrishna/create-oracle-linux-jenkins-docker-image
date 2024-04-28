@@ -1,0 +1,41 @@
+
+name: Build And Publish Jenkins Docker image
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_name:
+        description: 'Docker Image name'
+        required: true
+        type: string
+        default: 'dockerofkrishnadhas/oraclelinux-jenkins-docker-image'
+      tag:
+        description: 'Docker Image tag'
+        required: true
+        type: string
+        default: 'latest'
+      dockerfile_path:
+        default: '.'
+        description: 'Dockerfile path for build'
+        required: true
+
+jobs:
+  build-and-push-jenkins-image-to-dockerhub-registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v4
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        file: ${{ inputs.dockerfile_path }}
+        push: true
+        tags: ${{ inputs.image_name }}:${{ inputs.tag }}
