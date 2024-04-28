@@ -3,7 +3,7 @@ FROM oraclelinux:9
 ARG JAVA_VERSION=11.0.22+7
 
 # Update and upgrade packages
-dnf makecache && dnf upgrade-y
+RUN dnf makecache && dnf upgrade-y
 
 # Install basic packages 
 RUN dnf install --disableplugin=subscription-manager --setopt=install_weak_deps=0 --setopt=tsflags=nodocs -y \
