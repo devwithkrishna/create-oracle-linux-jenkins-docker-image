@@ -1,0 +1,23 @@
+jenkins:
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+      - id: ${JENKINS_ADMIN}
+        password: ${JENKINS_ADMIN_PASSWORD}
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+      - "Overall/Administer:admin"
+      - "Overall/Read:authenticated"
+
+unclassified:
+  location:
+    url: http://localhost:8080/
+
+
+security:
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy

@@ -1,0 +1,29 @@
+
+version: '3.8'
+services:
+  jenkins:
+    build:
+      context: ./dockerfile
+      dockerfile: Jenkins-master-Dockerfile
+    restart: on-failure
+    ports:
+     - 8080:8080
+    container_name: ${CONTAINER_NAME}
+    environment:
+      - JENKINS_ADMIN=${JENKINS_ADMIN}
+      - JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD}
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    networks:
+      - jenkins
+volumes:
+  jenkins-data:
+    driver: local
+networks: 
+  jenkins:
+
+
+      
+       
+        
+       

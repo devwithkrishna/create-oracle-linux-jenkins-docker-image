@@ -1,0 +1,34 @@
+plugins:
+- artifactId: configuration-as-code
+- artifactId: git
+- artifactId: script-security
+- artifactId: blueocean
+- artifactId: docker-commons
+- artifactId: docker-workflow
+- artifactId: sonar
+- artifactId: role-strategy
+- artifactId: github
+- artifactId: docker-plugin
+- artifactId: ansicolor
+- artifactId: azure-credentials
+- artifactId: credentials
+- artifactId: rebuild
+- artifactId: ssh-credentials
+- artifactId: workflow-api
+- artifactId: workflow-job
+- artifactId: workflow-basic-steps
+- artifactId: workflow-multibranch
+- artifactId: pipeline-input-step
+- artifactId: pipeline-stage-view
+- artifactId: kubernetes
+- artifactId: ws-cleanup
+- artifactId: workflow-scm-step
+- artifactId: ssh-slaves
+- artifactId: pipeline-rest-api
+- artifactId: kubernetes-client-api
+- artifactId: kubernetes-credentials
+- artifactId: github-api
+- artifactId: git-client
+
+
+
