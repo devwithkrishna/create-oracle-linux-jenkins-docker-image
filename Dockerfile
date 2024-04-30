@@ -23,10 +23,10 @@ ARG gid=1000
 ARG http_port=8080
 ARG agent_port=50000
 ARG JENKINS_HOME=/var/jenkins_home
-ARG JENKINS_VERSION=2.440.2
+ARG JENKINS_VERSION=2.414.3
 ENV JENKINS_HOME $JENKINS_HOME
 ENV JENKINS_SLAVE_AGENT_PORT ${agent_port}
-ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+
 
 # Jenkins is run with user `jenkins`, uid = 1000
 # If you bind mount a volume from the host or a data container,

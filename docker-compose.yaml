@@ -12,6 +12,7 @@ services:
     environment:
       - JENKINS_ADMIN=${JENKINS_ADMIN}
       - JENKINS_ADMIN_PASSWORD=${JENKINS_ADMIN_PASSWORD}
+      - JAVA_OPTS= "-Djenkins.install.runSetupWizard=false"
     volumes:
       - jenkins-data:/var/jenkins_home
     networks:
