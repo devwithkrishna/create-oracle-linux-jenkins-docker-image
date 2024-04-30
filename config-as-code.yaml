@@ -6,10 +6,22 @@ jenkins:
       - id: ${JENKINS_ADMIN}
         password: ${JENKINS_ADMIN_PASSWORD}
   authorizationStrategy:
-    globalMatrix:
-      permissions:
-      - "Overall/Administer:admin"
-      - "Overall/Read:authenticated"
+    roleBased:
+      roles:
+        global:
+        - name: "admin"
+          description: "Jenkins administrators"
+          permissions:
+          - "Overall/Administer"
+          entries:
+          - user: "admin"
+        - name: "readonly"
+          description: "Read-only users"
+          permissions:
+          - "Overall/Read"
+          - "Job/Read"
+          entries:
+          - user: "authenticated"
 
 unclassified:
   location:
