@@ -13,3 +13,6 @@ https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=
 
 Java 11 installation will be taken care by the download_install_open_jdk shell script. we will be passing the open jdk java version as an argument to Dockerfile which is later passsed as an argument to shell script at the runtime.
 
+# How to run the code
+
+ docker-compose --env-file .env up -d or docker build -t <your image name>:<your image tag> . assuming you are executing from root of repository
