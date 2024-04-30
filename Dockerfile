@@ -51,7 +51,7 @@ RUN curl -fsSL ${PLUGIN_CLI_URL} -o $JENKINS_HOME/jenkins-plugin-manager.jar
 COPY plugins.yaml ${JENKINS_HOME}/plugins.yaml
 
 # Install plugin using jenkins cli
-RUN  java -jar $JENKINS_HOME/jenkins-plugin-manager.jar --plugin-file $JENKINS_HOME/plugins.yaml--plugin-download-directory ${JENKINS_HOME}/plugins --output yaml 
+RUN  java -jar $JENKINS_HOME/jenkins-plugin-manager.jar --plugin-file $JENKINS_HOME/plugins.yaml --plugin-download-directory ${JENKINS_HOME}/plugins --output yaml 
 
 # Update and upgrade packages
 RUN dnf makecache && dnf upgrade -y
