@@ -47,6 +47,8 @@ ARG PLUGIN_CLI_VERSION=2.12.15
 ARG PLUGIN_CLI_URL=https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/${PLUGIN_CLI_VERSION}/jenkins-plugin-manager-${PLUGIN_CLI_VERSION}.jar
 RUN curl -fsSL ${PLUGIN_CLI_URL} -o $JENKINS_HOME/jenkins-plugin-manager.jar
 
+# plugins.yaml file for installing plugins using jenkins cli
+COPY plugins.yaml ${JENKINS_HOME}/plugins.yaml
 
 # Install plugin using jenkins cli
 RUN  java -jar $JENKINS_HOME/jenkins-plugin-manager.jar --plugin-file $JENKINS_HOME/plugins.yaml--plugin-download-directory ${JENKINS_HOME}/plugins --output yaml 
@@ -57,7 +59,6 @@ RUN dnf makecache && dnf upgrade -y
 # Configuration as code
 COPY ./config-as-code.yaml /var/jenkins_home/config-as-code.yaml
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/config-as-code.yaml
-COPY plugins.yaml ${JENKINS_HOME}/plugins.yaml
 
 # for main web interface:
 EXPOSE ${http_port}
