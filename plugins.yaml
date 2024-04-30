@@ -29,6 +29,5 @@ plugins:
 - artifactId: kubernetes-credentials
 - artifactId: github-api
 - artifactId: git-client
-
-
+- artifactId: azure-ad
 
