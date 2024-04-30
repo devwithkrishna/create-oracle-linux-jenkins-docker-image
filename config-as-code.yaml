@@ -23,13 +23,3 @@ jenkins:
           entries:
           - user: "authenticated"
 
-unclassified:
-  location:
-    url: http://localhost:8080/
-
-
-security:
-  queueItemAuthenticator:
-    authenticators:
-    - global:
-        strategy: triggeringUsersAuthorizationStrategy
