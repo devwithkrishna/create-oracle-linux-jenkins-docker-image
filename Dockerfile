@@ -40,7 +40,9 @@ RUN mkdir -p $JENKINS_HOME \
 RUN mkdir -p /usr/share/jenkins && mkdir -p ${JENKINS_HOME}/plugins
 # Download jenkins 
 RUN curl -fsSL https://get.jenkins.io/war-stable/${JENKINS_VERSION}/jenkins.war -o /usr/share/jenkins/jenkins.war \
-&& chown -R ${user} "$JENKINS_HOME" 
+&& chown -R ${user}:${user} "$JENKINS_HOME" \
+&& chown ${user}:${user} /usr/share/jenkins/jenkins.war
+
 
 # Install Jenkins CLI to install plugins from plugins.yaml file
 ARG PLUGIN_CLI_VERSION=2.12.15
