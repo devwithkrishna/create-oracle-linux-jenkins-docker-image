@@ -56,11 +56,12 @@ COPY plugins.yaml ${JENKINS_HOME}/plugins.yaml
 RUN  java -jar $JENKINS_HOME/jenkins-plugin-manager.jar --plugin-file $JENKINS_HOME/plugins.yaml --plugin-download-directory ${JENKINS_HOME}/plugins --output yaml 
 
 # Update and upgrade packages
-RUN dnf makecache && dnf upgrade -y
+RUN dnf makecache && dnf upgrade -y && dnf clean all
 
 # Configuration as code
 COPY ./config-as-code.yaml /var/jenkins_home/config-as-code.yaml
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/config-as-code.yaml
+
 
 # for main web interface:
 EXPOSE ${http_port}
@@ -70,4 +71,5 @@ EXPOSE ${agent_port}
 
 USER ${user}
 
-ENTRYPOINT [ "java", "-jar", "/usr/share/jenkins/jenkins.war" ]
+# CMD instruction instead of ENTRYPOINT to be able to override the command when running the container.
+CMD [ "java", "-jar", "/usr/share/jenkins/jenkins.war" ]
