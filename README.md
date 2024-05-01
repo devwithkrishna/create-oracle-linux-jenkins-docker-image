@@ -84,3 +84,9 @@ networks:
 * [dockerofkrishnadhas/oraclelinux-jenkins-docker-image](https://hub.docker.com/layers/dockerofkrishnadhas/oraclelinux-jenkins-docker-image/latest/images/sha256-6d106820a320d7c1ad8ebbf25f73a8a1d6cc56f7275f9d65c4b93c5d92e4fc80?context=explore)
 
 _docker pull command_ : `docker pull dockerofkrishnadhas/oraclelinux-jenkins-docker-image:latest`
+
+# Image scanning
+
+Image scanning is done by trivy which is an open-source tool that can be used to scan Docker images for vulnerabilities.
+
+_command used_ : `docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image ${{ inputs.image_name }}:${{ inputs.tag }}` 
