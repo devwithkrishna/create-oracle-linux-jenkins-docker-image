@@ -34,3 +34,9 @@ jobs:
       with:
         push: true
         tags: ${{ inputs.image_name }}:${{ inputs.tag }}
+    - name: set up docker and scan docker image  for vulnerabilities
+      uses: docker-practice/actions-setup-docker@master
+    -  run: |
+        set -x
+        docker version
+        docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image ${{ inputs.image_name }}:${{ inputs.tag }} 
