@@ -1,0 +1,22 @@
+# Per https://docs.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+version: 2
+registries:
+  dockerhub:
+    type: docker-registry
+    url: registry.hub.docker.com
+    username: ${{ secrets.DOCKERHUB_USERNAME }}
+    password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+updates:
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 6
+  target-branch: main
+  reviewers:
+  - githubofkrishnadhas
+  labels:
+  - docker-package-dependancy
+  ignore:
+  # Ignore proposals to update to new versions of Java because updatecli takes care of that.
+  - dependency-name: "eclipse-temurin"
