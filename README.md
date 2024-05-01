@@ -15,4 +15,5 @@ Java 11 installation will be taken care by the download_install_open_jdk shell s
 
 # How to run the code
 
- docker-compose --env-file .env up -d or docker build -t <your image name>:<your image tag> . assuming you are executing from root of repository
+ docker-compose --env-file .env up -d or docker build -t your image name 
+ . assuming you are executing from root of repository
