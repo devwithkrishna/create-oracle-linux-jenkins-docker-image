@@ -1,4 +1,3 @@
-
 version: '3.8'
 services:
   jenkins:
@@ -22,9 +21,3 @@ volumes:
     driver: local
 networks: 
   jenkins:
-
-
-      
-       
-        
-       
